@@ -231,6 +231,332 @@ def remove_all_item(lst: List[Union[int, float, str]], value: Union[int, float, 
 
 
 
+# 13.	Ro'yxatni slicing yordamida faqat bir qismini chiqaruvchi kod yozing.
+def slicing_list(lst: List[Union[str, int, float]], idx1:int, idx2:int, ) -> Union[str, List[Union[str, int, float]]]:
+    """
+    Berilgan indexlar bo'yicha listdan ma'lumotlarni oladi
+    :param lst: berilgan ro'yxat
+    :param idx1: boshlang'ich nuqta uchun index1
+    :param idx2: tugash nuqtasi uchun index2
+    :return: ajratib olingan ma'lumotlarni ro'yxat qilib qaytaradi
+    """
+    if not lst:
+        return "List bo'sh"
+
+    result = lst[idx1:idx2+1]
+    return result
+
+# lst17 = list(range(0,100,3))
+# print(slicing_list(lst17, 11, 28))
+
+# 14.	Ro'yxatning barcha elementlarini kvadratga oshirib, yangi ro'yxatga saqlang.
+def square_list(lst: List[Union[int, float]]) -> Union[str, List[Union[int, float]]]:
+    """
+    Berilgan ro'yxat elementlarini kvadratga oshirib yangi ro'yxat yaratuvchi funksiya
+    :param lst: ro'yxat
+    :return: yangi ro'yxat
+    """
+    if not lst:
+        return "List bo'sh"
+
+    try:
+        result = [i ** 2 for i in lst]
+    except TypeError:
+        return "Ro'yxatda faqat raqam qatnashish kerak"
+
+    return result
+
+# lst18 = [1, 2,3,4,5,6,7,8,9,10]
+# print(square_list(lst18))
+
+
+
+# 15.	Juft indeksdagi elementlarni ajratib oling.
+
+def pair_index_item(lst: List[Union[str, int, float]]) -> Union[str, List[Union[str, int, float]]]:
+    """
+    Berilgan ro'yxat tarkibidan faqat juft indexdagi qiymatlarni qaytaruvchi funksiya
+    :param lst: berilgan ro'yxat
+    :return: juft indexdagi qiymatlardan iborat ro'yxat
+    """
+
+    if not lst:
+        return "Ro'yxat bo'sh"
+    n = len(lst)
+    result = [lst[i] for i in range(1, n) if i % 2 == 0]
+    return result
+
+# lst19 = ['py', 17, 25, True, False, 'Js', 25]
+# print(pair_index_item(lst19))
+
+
+
+# 16.	Ro'yxatdagi faqat juft sonlarni qaytaring.
+
+def pair_number(lst: List[int]) -> Union[str, List[int]]:
+    """
+    Berilgan ro'yxatdan faqat juft qiymatlarni qaytaruvchi funksiya
+    :param lst: ro'yxat
+    :return: juft qiymatlardan iborat ro'yxat
+    """
+
+    if not lst:
+        return "Ro'yxat bo'sh"
+
+    result = []
+    for i in lst:
+        if isinstance(i, int) and i % 2 == 0:
+            result.append(i)
+        elif not isinstance(i, int):
+            return "ro'yxatda faqat butun sonlardan foydalaning"
+
+    return result
+
+# lst20 = [1,2,3,4,56,8,11,17,25,30]
+# print(pair_number(lst20))
+
+
+# 17.	Ro'yxatdagi har bir elementni 2 ga bo'ling va natijani saqlang.
+
+def bisection_item(lst: List[Union[int, float]]) -> Union[str, List[Union[int, float]]]:
+    """
+    Berilgan ro'yxatdagi barcha qiymatlarni ikkiga bo'luvchi funksiya
+    :param lst: ro'yxat
+    :return: yangi ro'yxat
+    """
+
+    if not lst:
+        return "Ro'yxat bo'sh"
+
+    result = [ i/2 for i in lst if isinstance(i, Union[int, float])]
+    return result
+
+# lst21 = [10,20,30]
+# lst22 = [3.6,4.2,10.2,18,20]
+# print(bisection_item(lst22))
+# print(bisection_item(lst21))
+
+
+
+# 18.	Ro'yxatni aylanma siljiting (masalan, birinchi element oxiriga o'tsin).
+def revers_mylist(lst):
+    """
+    berilgan ro'yxatni elementlarini aylanma siljitish
+    :param lst: ro'yxat
+    :return: qaytarilgan ro'yxat
+    """
+    if not lst:
+        return "List bo'sh"
+
+    return lst[::-1]
+
+# lst23 = [1,2,3,4]
+# print(lst23[-1])
+# print(revers_mylist(lst23))
+
+
+
+# 19.	Faqat sonlardan iborat ro'yxatni saralang, matn elementlarini e'tiborsiz qoldiring.
+
+def sorted_only_number(lst: List[Union[str, int, float]]) -> Union[str, List[Union[str, int, float]]]:
+    """
+    ro'yxatdagi faqat raqamlarni tartiblaydigan funksiya
+    :param lst: ro'yxat
+    :return: raqamlardan iborat tartiblangan ro'yxat
+    """
+
+    if not lst:
+        return "Empty"
+
+    result = sorted([i for i in lst if isinstance(i, int)])
+    return result
+
+# lst24 = ['py', 25, 'js', 10]
+# print(sorted_only_number(lst24))
+
+
+
+# 20.	Ikki ro'yxatning umumiy elementlarini topuvchi kod yozing.
+
+def twins_list_items(lst: List[Union[str, int, float, bool]], lst2:List[Union[str, int, float, bool]])-> Union[str, List[Union[str, int, float, bool]]]:
+    """
+    ikki ro'yxatda bir xil elementlarni ajratib oluvchi funksiya
+    :param lst: birinchi ro'yxat
+    :param lst2: ikkinci ro'yxat
+    :return: ikki ro'yxatda ham mavjud bo'lgan elementlar ro'yxati
+    """
+
+    if not lst and not lst2:
+        return "Ikkala ro'yxat ham elementlarga ega bo'lishi kerak"
+
+    set_lst1 = set(lst)
+    set_lst2 = set(lst2)
+
+    result = list(set_lst1 & set_lst2)
+    return result
+
+# lst24 = ['py', 'js', 25, 27, True]
+# lst25 = ['py', 'js', 10, 30, True]
+# print(twins_list_items(lst24, lst25))
+
+
+# 23.	Ro'yxatdagi faqat string elementlarni yig'ib, ularni birlashtiring.
+def string_elements(lst: List[Union[str, int, float, bool]]) -> str:
+    """
+    Berilgan ro'yxat tarkibidagi barcha stringlarni ajratib olib birlashtirish
+    :param lst: ro'yxat
+    :return: birlashgan string
+    """
+
+    if not lst:
+        return "Ro'yxat bo'sh"
+
+    result = [i for i in lst if isinstance(i, str)]
+    return ''.join(result)
+
+# lst26 = ['main', True, 17, '.py']
+# print(string_elements(lst26))
+
+
+
+# 24.	Berilgan ro'yxatdan palindrom so'zlarni ajratib oling.
+def is_palindrome_str(lst: List[str]) -> Union[str, List[str]]:
+    """
+    ro'yxatdagi barcha palindrome qiymatlarni ajratib olish
+    :param lst: ro'yxat
+    :return: palindrome ro'yxat
+    """
+
+    if not lst:
+        return  "Ro'yxat bo'sh"
+
+    result = [i for i in lst if i == i[::-1]]
+    return result
+
+# lst27 = ['aziza', 'kiyik', 'py', 'js']
+# print(is_palindrome_str(lst27))
+
+
+# 25.	Faqat bir marta uchraydigan elementlarni ro'yxatga qaytaring.
+
+def only_item(lst: List[Union[str, int, float, bool]]) -> Union[str, List[Union[str, int, float, bool]]]:
+    """
+    Berilgan ro'yxat tarkibida faqat bir marta qatnashgan elementlarni ajratib oluvchi funksiya
+    :param lst: ro'yxat
+    :return: ro'yxat
+    """
+
+    if not lst:
+        return "Ro'yxat bo'sh"
+
+    counter = Counter(lst)
+    result = [el for el, freq in counter.items() if freq == 1]
+    return result
+
+
+# lst28 = ['py', 'js', 1,1,5,7,5,7,11]
+# print(only_item(lst28))
+
+
+# 28.	Ro'yxatdagi eng uzun stringni topuvchi dastur yozing.
+def maximum_length_string(lst: List[str]) -> Union[str, None]:
+    """
+    Ro'yxatdagi eng uzun stringni topuvchi dastur
+    :param lst: ro'yxat
+    :return: maximum length string
+    """
+
+    if not lst:
+        return None
+
+    return max(lst, key=len)
+
+# lst29 = ['py', 'python', 'pythonweb']
+# print(maximum_length_string(lst29))
+
+
+
+# 29.	Elementlari tuple bo'lgan ro'yxatdagi birinchi qiymatlar bo'yicha saralang.
+def tuple_element_sorted(lst: List[tuple]) -> Union[List[tuple], None]:
+    """
+    Elementlari tuple bo'lgan ro'yxatdagi birinchi qiymatlar bo'yicha saralaydi
+    :param lst: ro'yxat
+    :return: saralangan ro'yxat
+    """
+
+    if not lst:
+        return None
+
+    result = sorted(lst, key=lambda x: x[0])
+    return result
+
+# lst30 = [(1, 'apple'), (3, 'py'), (2, 'js'), (0, 'drf')]
+# print(tuple_element_sorted(lst30))
+
+
+# 30.	Ro'yxatdagi barcha elementlar boshqa bir ro'yxat elementlariga bo'linadimi, tekshiring.
+
+def are_elements_divisible(lst1: List[int], lst2: List[int]) -> bool:
+    """
+    lst1 dagi barcha elementlar lst2 dagi hech bo'lmaganda bitta elementga bo'linishini tekshiradi.
+    :param lst1: Tekshiriladigan sonlar ro'yxati
+    :param lst2: Bo'luvchilar ro'yxati
+    :return: True agar barcha elementlar bo'linsa, aks holda False
+    """
+    if not lst1 or not lst2:  # Bo'sh ro'yxat bilan ishlash
+        return False
+
+    lst2 = [x for x in lst2 if x != 0]  # 0 bo'luvchilarni olib tashlash
+    if not lst2:  # Agar faqat 0 lar bo'lsa, False qaytarish
+        return False
+
+    return all(any(num % divisor == 0 for divisor in lst2) for num in lst1)
+
+# Test
+print(are_elements_divisible([10, 20, 30], [2, 5]))  # True
+print(are_elements_divisible([10, 15, 25], [3, 4]))  # False
+print(are_elements_divisible([10, 20, 30], [0, 5]))  # True
+print(are_elements_divisible([], [2, 5]))  # False
+print(are_elements_divisible([10, 20, 30], []))  # False
+print(are_elements_divisible([10, 20, 30], [0, 0, 0]))  # False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
